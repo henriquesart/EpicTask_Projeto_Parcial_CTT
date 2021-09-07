@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>EpicTask - Listagem</title>
+<link th:href="style.css" rel="stylesheet" />
+</head>
+<body>
+
+	<h1>Listagem</h1>
+	<h2>Gerencie todos os usuários cadastrados no sistema.</h2>
+	<div class="listagem">
+
+		<ul th:each="list : ${list}" >
+			<li >
+				<h2 th:text="${list.id}"></h2>
+				<p>Nome:<p>
+				<p th:text="${list.nome}" id="comms"><p>
+				<p>Email:<p>
+				<p th:text="${list.email}" id="comms"></p>
+				<p>Senha:<p>
+				<p th:text="${list.senha}" id="comms"></p>
+			</li>
+		</ul>
+	</div>
+	<div class="cttgroup">
+		<a href="/home"><< Início</a>
+	</div>
+
+</body>
+</html>
