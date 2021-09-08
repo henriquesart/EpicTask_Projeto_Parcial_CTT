@@ -1,23 +1,29 @@
 @charset "UTF-8";
 
-body{
+body {
 	font-family: Century Gothic;
 	background-color: #EFEADD;
 }
 
-h1{
+h1 {
 	text-align: center;
 	font-size: 70px;
 	margin: 90px 0 0 0;
 }
 
-h2{
+h2 {
 	color: grey;
 	text-align: center;
 	font-size: 18px;
 }
 
-.start{
+h4 {
+	color: #ff8080;
+	text-align: right;
+	margin: 5px 0 -5px 0;
+}
+
+.start {
 	margin: auto;
 	margin-top: 120px;
 	width: 600px;
@@ -26,10 +32,9 @@ h2{
 .start ul {
 	margin: auto;
 	list-style-type: none;
-	
 }
 
-.start li{
+.start li {
 	display: inline;
 }
 
@@ -43,35 +48,34 @@ h2{
 	border: 1px solid black;
 }
 
-.start li a:hover{
+.start li a:hover {
 	padding: 25px;
 }
 
-.cttgroup{
-
+.cttgroup {
 	margin: auto;
 	margin-top: 100px;
-  	width: 45%;
-  	padding: 10px;
+	width: 45%;
+	padding: 10px;
 }
 
-.cttgroup p:hover{
+.cttgroup p:hover {
 	text-decoration: underline;
 	cursor: context-menu;
 }
 
-.cttgroup a{
+.cttgroup a {
 	color: black;
 	float: right;
 	text-decoration: none;
 	margin: 10px 0 70px 0;
 }
 
-.cttgroup a:hover{
-	text-decoration: underline;	
+.cttgroup a:hover {
+	text-decoration: underline;
 }
 
-.info a{
+.info a {
 	font-size: 1vw;
 	width: 15%;
 	padding: 1vw;
@@ -84,53 +88,52 @@ h2{
 	transition: 0.2s;
 }
 
-.info a:hover{
+.info a:hover {
 	width: 19%;
 	text-decoration: underline;
 }
 
-.info{
-	margin:auto;
+.info {
+	margin: auto;
 	width: 45%;
 	display: block;
-  	padding: 20px;
+	padding: 20px;
 }
 
-.info span{
+.info span {
 	size: 1000px;
 }
 
-.info input{
-  width: 100%;
-  padding: 1vw;
-  margin: 50px 0 0 0;
-  display: inline-block;
-  box-sizing: border-box;
-  background-color: transparent;
-  font-family: Century Gothic;
-  border: 1px solid black;
+.info input {
+	width: 100%;
+	padding: 1vw;
+	margin: 50px 0 0 0;
+	display: inline-block;
+	box-sizing: border-box;
+	background-color: transparent;
+	font-family: Century Gothic;
+	border: 1px solid black;
 }
 
-
-.info input:first-of-type{
+.info input:first-of-type {
 	margin: 30px 0 0 0;
 }
 
-button{
+button {
 	font-size: 1vw;
 	font-family: Century Gothic;
 	width: 74%;
 	padding: 1vw;
 	margin: 50px 0 0 0;
 	align-content: center;
-	float:right;
+	float: right;
 	border: 1px solid black;
 	background-color: transparent;
 	position: static;
 	transition: 0.2s;
 }
 
-button:hover{
+button:hover {
 	width: 78%;
 	cursor: pointer;
 	text-decoration: underline;
@@ -140,16 +143,15 @@ button:hover{
 	margin: auto;
 	list-style-type: none;
 	margin: 40px 0 0 -40px;
-
 }
 
-.listagem h2{
+.listagem h2 {
 	color: black;
 	margin: 0 0 30px 0;
 	float: right;
 }
 
-.listagem li{
+.listagem li {
 	margin: auto;
 	min-width: 300px;
 	width: 30%;
@@ -158,11 +160,10 @@ button:hover{
 	transition: 0.2s;
 }
 
-.listagem li:hover{
+.listagem li:hover {
 	width: 31%;
 }
 
-#comms{
+#comms {
 	margin: -37px 0 0 60px;
 }
-

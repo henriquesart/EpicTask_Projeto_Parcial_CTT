@@ -14,13 +14,13 @@
 		<form action="/list" method="post" th:object="${task}">
 		
 			<input name="nome" placeholder="Nome" th:field="*{nome}">
-			<h2 th:errors="*{nome}"></h2>
+			<h4 th:errors="*{nome}"></h4>
 			
 			<input name="email" placeholder="Email" th:field="*{email}">
-			<h2 th:errors="*{email}"></h2>
+			<h4 th:errors="*{email}"></h4>
 			
 			<input name="senha" placeholder="Senha" type="password" th:field="*{senha}">
-			<h2 th:errors="*{senha}"></h2>
+			<h4 th:errors="*{senha}"></h4>
 			
 			<a href="/login">Login</a>
 			<button>Cadastrar</button>
