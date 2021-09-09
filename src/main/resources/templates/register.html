@@ -11,7 +11,7 @@
 	<h2>Para cadastrar um novo usuário no sistema, preencha o formulário com as informações solicitadas.</h2>
  
 	<div class="info">
-		<form action="/list" method="post" th:object="${task}">
+		<form action="/list" method="post" th:object="${account}">
 		
 			<input name="nome" placeholder="Nome" th:field="*{nome}">
 			<h4 th:errors="*{nome}"></h4>

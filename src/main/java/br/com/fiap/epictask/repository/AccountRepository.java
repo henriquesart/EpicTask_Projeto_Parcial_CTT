@@ -4,10 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.fiap.epictask.model.Task;
+import br.com.fiap.epictask.model.Account;
 
-public interface TaskRepository extends JpaRepository<Task, Long> {
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
-	Page<Task> findByNomeLike(String string, Pageable pageable);
+	Page<Account> findByNomeLike(String string, Pageable pageable);
 
 }

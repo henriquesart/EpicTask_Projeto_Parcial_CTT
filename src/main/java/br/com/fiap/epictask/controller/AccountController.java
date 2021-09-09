@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.fiap.epictask.model.Task;
-import br.com.fiap.epictask.repository.TaskRepository;
+import br.com.fiap.epictask.model.Account;
+import br.com.fiap.epictask.repository.AccountRepository;
 
 @Controller
-public class TaskController {
+public class AccountController {
 	
 	@Autowired
-	private TaskRepository repository;
+	private AccountRepository repository;
 
 	@RequestMapping("/home")
 	public String index() {
@@ -29,22 +29,22 @@ public class TaskController {
 	@GetMapping("/list")
 	public ModelAndView listagem() {
 		ModelAndView modelAndView = new ModelAndView("list");
-		List<Task> list = repository.findAll();
+		List<Account> list = repository.findAll();
 		modelAndView.addObject("list", list);
 		return modelAndView;
 	}
 	
 	@PostMapping("/list")
-	public String save(@Valid Task task, BindingResult result) {
+	public String save(@Valid Account account, BindingResult result) {
 		if(result.hasErrors()) {
 			return "register";
 		}
-		repository.save(task);
+		repository.save(account);
 		return "index";
 	}
 
 	@RequestMapping("/register")
-	public String register(Task task) {
+	public String register(Account account) {
 		return "register";
 	}
 

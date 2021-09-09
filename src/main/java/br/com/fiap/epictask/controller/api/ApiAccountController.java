@@ -19,18 +19,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.fiap.epictask.model.Task;
-import br.com.fiap.epictask.repository.TaskRepository;
+import br.com.fiap.epictask.model.Account;
+import br.com.fiap.epictask.repository.AccountRepository;
 
 @RestController
 @RequestMapping("/api/user")
-public class ApiTaskController {
+public class ApiAccountController {
 
 	@Autowired
-	private TaskRepository repository;
+	private AccountRepository repository;
 
 	@GetMapping()
-	public Page<Task> index(@RequestParam(required = false) String nome,
+	public Page<Account> index(@RequestParam(required = false) String nome,
 			@PageableDefault(page = 0, size = 10) Pageable pageable) {
 
 		if (nome == null) {
@@ -41,27 +41,27 @@ public class ApiTaskController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<Task> create(@RequestBody Task task, UriComponentsBuilder uriBuilder) {
-		repository.save(task);
-		URI uri = uriBuilder.path("/api/task/{id}").buildAndExpand(task.getId()).toUri();
-		return ResponseEntity.created(uri).body(task);
+	public ResponseEntity<Account> create(@RequestBody Account account, UriComponentsBuilder uriBuilder) {
+		repository.save(account);
+		URI uri = uriBuilder.path("/api/task/{id}").buildAndExpand(account.getId()).toUri();
+		return ResponseEntity.created(uri).body(account);
 	}
 
 	@GetMapping("{id}")
-	public ResponseEntity<Task> get(@PathVariable Long id) {
-		Optional<Task> task = repository.findById(id);
+	public ResponseEntity<Account> get(@PathVariable Long id) {
+		Optional<Account> account = repository.findById(id);
 
-		if (task.isPresent())
-			return ResponseEntity.ok(task.get());
+		if (account.isPresent())
+			return ResponseEntity.ok(account.get());
 
 		return ResponseEntity.notFound().build();
 	}
 
 	@DeleteMapping("{id}")
-	public ResponseEntity<Task> delete(@PathVariable Long id) {
-		Optional<Task> task = repository.findById(id);
+	public ResponseEntity<Account> delete(@PathVariable Long id) {
+		Optional<Account> account = repository.findById(id);
 
-		if (task.isEmpty())
+		if (account.isEmpty())
 			return ResponseEntity.notFound().build();
 		
 		repository.deleteById(id);
@@ -71,12 +71,12 @@ public class ApiTaskController {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Task> update(@RequestBody Task task, @PathVariable Long id) {
+	public ResponseEntity<Account> update(@RequestBody Account account, @PathVariable Long id) {
 		repository.findById(id);
 		
-		task.setId(id);
+		account.setId(id);
 		
-		repository.save(task);
+		repository.save(account);
 
 		return ResponseEntity.ok().build();
 	}
