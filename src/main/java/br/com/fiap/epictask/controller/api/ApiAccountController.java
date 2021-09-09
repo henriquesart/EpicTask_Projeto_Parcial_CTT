@@ -3,7 +3,12 @@ package br.com.fiap.epictask.controller.api;
 import java.net.URI;
 import java.util.Optional;
 
+import javax.management.RuntimeErrorException;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -30,6 +35,7 @@ public class ApiAccountController {
 	private AccountRepository repository;
 
 	@GetMapping()
+	@Cacheable("accounts")
 	public Page<Account> index(@RequestParam(required = false) String nome,
 			@PageableDefault(page = 0, size = 10) Pageable pageable) {
 
@@ -41,7 +47,8 @@ public class ApiAccountController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<Account> create(@RequestBody Account account, UriComponentsBuilder uriBuilder) {
+	@CacheEvict(value = "accounts", allEntries = true)
+	public ResponseEntity<Account> create(@RequestBody @Valid Account account, UriComponentsBuilder uriBuilder) {
 		repository.save(account);
 		URI uri = uriBuilder.path("/api/task/{id}").buildAndExpand(account.getId()).toUri();
 		return ResponseEntity.created(uri).body(account);
@@ -49,36 +56,40 @@ public class ApiAccountController {
 
 	@GetMapping("{id}")
 	public ResponseEntity<Account> get(@PathVariable Long id) {
-		Optional<Account> account = repository.findById(id);
 
-		if (account.isPresent())
-			return ResponseEntity.ok(account.get());
-
-		return ResponseEntity.notFound().build();
+		return ResponseEntity.of(repository.findById(id));
 	}
 
 	@DeleteMapping("{id}")
+	@CacheEvict(value = "accounts", allEntries = true)
 	public ResponseEntity<Account> delete(@PathVariable Long id) {
 		Optional<Account> account = repository.findById(id);
 
 		if (account.isEmpty())
 			return ResponseEntity.notFound().build();
-		
+
 		repository.deleteById(id);
 
 		return ResponseEntity.ok().build();
 
 	}
 
-	@PutMapping("/update/{id}")
-	public ResponseEntity<Account> update(@RequestBody Account account, @PathVariable Long id) {
-		repository.findById(id);
-		
-		account.setId(id);
-		
+	@PutMapping("{id}")
+	@CacheEvict(value = "accounts", allEntries = true)
+	public ResponseEntity<Account> update(@PathVariable Long id, @RequestBody @Valid Account newAccount) {
+		Optional<Account> optional = repository.findById(id);
+
+		if (optional.isEmpty())
+			return ResponseEntity.notFound().build();
+
+		Account account = optional.get();
+		account.setNome(newAccount.getNome());
+		account.setEmail(newAccount.getEmail());
+		account.setSenha(newAccount.getSenha());
+
 		repository.save(account);
 
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(account);
 	}
 
 }

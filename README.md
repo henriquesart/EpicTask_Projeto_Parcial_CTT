@@ -46,4 +46,6 @@ Projeto parcial direcionado ao gerenciamento de usuários.
 
 - Spring Boot Actuator
 
+- Documentação Swagger
+
 - Banco de Dados H2
